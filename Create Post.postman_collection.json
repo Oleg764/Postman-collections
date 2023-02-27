@@ -1,0 +1,1032 @@
+{
+	"info": {
+		"_postman_id": "0df14d50-e320-4b04-8dfd-43026cdd0d76",
+		"name": "Create Post",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25763437"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.collectionVariables.set(\"tokenNew\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "GB202302841a614",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "431acc2bd4",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/login"
+			},
+			"response": []
+		},
+		{
+			"name": "New User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"username\", jsonData.item.username);\r",
+							"pm.collectionVariables.set(\"password\", jsonData.item.password);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Сергей",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Бочкарёв",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "bosh13",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "89423457777",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "maie",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1976-02-20",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https:\\\\test-stand.gb.ru/gateway/dummies"
+			},
+			"response": []
+		},
+		{
+			"name": "Auth 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonUser = pm.response.json();\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.collectionVariables.set(\"tokenuser\", jsonUser.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/login"
+			},
+			"response": []
+		},
+		{
+			"name": "new post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "bosh1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "d306b8e523",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Монеты или слитки",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "как тюменцам с помощью золота сохранить деньги",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Цена золота в слитках максимально приближена к стоимости содержащегося в них металла.\nВ ВТБ дали прогноз по золоту на 2023 год\n\n«В конце 2023 года ожидаем цену золота на уровне 1900 долл./унц. Золото может получить поддержку как защитный актив от ожидаемой в 2023 г. рецессии в крупнейших мировых экономиках», — рассказали в пресс-службе банка\n\nПодробнее на РБК:\nhttps://t.rbc.ru/tyumen/24/02/2023/63f853c19a7947ec4fd882bd?from=from_main_5",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0/1",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-25",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "SaveIsDraft",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "bosh1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "d306b8e523",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Монеты или слитки",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "как тюменцам с помощью золота сохранить деньги",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Цена золота в слитках максимально приближена к стоимости содержащегося в них металла.\nВ ВТБ дали прогноз по золоту на 2023 год\n\n«В конце 2023 года ожидаем цену золота на уровне 1900 долл./унц. Золото может получить поддержку как защитный актив от ожидаемой в 2023 г. рецессии в крупнейших мировых экономиках», — рассказали в пресс-службе банка\n\nПодробнее на РБК:\nhttps://t.rbc.ru/tyumen/24/02/2023/63f853c19a7947ec4fd882bd?from=from_main_5",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-25",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "TooSymbolsInContent",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "bosh1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "d306b8e523",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Монеты или слитки",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "как тюменцам с помощью золота сохранить деньги",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Цена золота в слитках максимально приближена к стоимости содержащегося в них металла.\nВ ВТБ дали прогноз по золоту на 2023 год\n\n«В конце 2023 года ожидаем цену золота на уровне 1900 долл./унц. Золото может получить поддержку как защитный актив от ожидаемой в 2023 г. рецессии в крупнейших мировых экономиках», — рассказали в пресс-службе банка\n\nПодробнее на РБК:\ndddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-25",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "TooLongDescription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "bosh1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "d306b8e523",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Монеты или слитки",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "как тюменцам с помощью золота сохранить деньги fgggggggggghfhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Цена золота в слитках максимально приближена к стоимости содержащегося в них металла.\nВ ВТБ дали прогноз по золоту на 2023 год\n\n«В конце 2023 года ожидаем цену золота на уровне 1900 долл./унц. Золото может получить поддержку как защитный актив от ожидаемой в 2023 г. рецессии в крупнейших мировых экономиках», — рассказали в пресс-службе банка\n\nПодробнее на РБК:\nhttps://t.rbc.ru/tyumen/24/02/2023/63f853c19a7947ec4fd882bd?from=from_main_5",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0/1",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-25",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "TooLongTitle",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "bosh1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "d306b8e523",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Монеты или слиткиrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrruuuuu r",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "как тюменцам с помощью золота сохранить деньги",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Цена золота в слитках максимально приближена к стоимости содержащегося в них металла.\nВ ВТБ дали прогноз по золоту на 2023 год\n\n«В конце 2023 года ожидаем цену золота на уровне 1900 долл./унц. Золото может получить поддержку как защитный актив от ожидаемой в 2023 г. рецессии в крупнейших мировых экономиках», — рассказали в пресс-службе банка\n\nПодробнее на РБК:\nhttps://t.rbc.ru/tyumen/24/02/2023/63f853c19a7947ec4fd882bd?from=from_main_5",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0/1",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-25",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "Less than today's date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "bosh1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "d306b8e523",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Монеты или слитки",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "как тюменцам с помощью золота сохранить деньги",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Цена золота в слитках максимально приближена к стоимости содержащегося в них металла.\nВ ВТБ дали прогноз по золоту на 2023 год\n\n«В конце 2023 года ожидаем цену золота на уровне 1900 долл./унц. Золото может получить поддержку как защитный актив от ожидаемой в 2023 г. рецессии в крупнейших мировых экономиках», — рассказали в пресс-службе банка\n\nПодробнее на РБК:\nhttps://t.rbc.ru/tyumen/24/02/2023/63f853c19a7947ec4fd882bd?from=from_main_5",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0/1",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2020-02-24",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "WrongDateFormat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {\r",
+							"    pm.response.to.have.status(500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "bosh1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "d306b8e523",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Монеты или слитки",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "как тюменцам с помощью золота сохранить деньги",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Цена золота в слитках максимально приближена к стоимости содержащегося в них металла.\nВ ВТБ дали прогноз по золоту на 2023 год\n\n«В конце 2023 года ожидаем цену золота на уровне 1900 долл./унц. Золото может получить поддержку как защитный актив от ожидаемой в 2023 г. рецессии в крупнейших мировых экономиках», — рассказали в пресс-службе банка\n\nПодробнее на РБК:\nhttps://t.rbc.ru/tyumen/24/02/2023/63f853c19a7947ec4fd882bd?from=from_main_5",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0/1",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "10-23-2020",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "WrongFormatImage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "bosh1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "d306b8e523",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/756772188960265.webp"
+						},
+						{
+							"key": "title",
+							"value": "Монеты или слитки",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "как тюменцам с помощью золота сохранить деньги",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Цена золота в слитках максимально приближена к стоимости содержащегося в них металла.\nВ ВТБ дали прогноз по золоту на 2023 год\n\n«В конце 2023 года ожидаем цену золота на уровне 1900 долл./унц. Золото может получить поддержку как защитный актив от ожидаемой в 2023 г. рецессии в крупнейших мировых экономиках», — рассказали в пресс-службе банка\n\nПодробнее на РБК:\nhttps://t.rbc.ru/tyumen/24/02/2023/63f853c19a7947ec4fd882bd?from=from_main_5",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-25",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "TooBigImage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "bosh1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "d306b8e523",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/coins-and-gold-bars-scattered-on-a-table.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Монеты или слитки",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "как тюменцам с помощью золота сохранить деньги",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Цена золота в слитках максимально приближена к стоимости содержащегося в них металла.\nВ ВТБ дали прогноз по золоту на 2023 год\n\n«В конце 2023 года ожидаем цену золота на уровне 1900 долл./унц. Золото может получить поддержку как защитный актив от ожидаемой в 2023 г. рецессии в крупнейших мировых экономиках», — рассказали в пресс-службе банка\n\nПодробнее на РБК:\nhttps://t.rbc.ru/tyumen/24/02/2023/63f853c19a7947ec4fd882bd?from=from_main_5",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0/1",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-25",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "EmptyAll fields",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "bosh1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "d306b8e523",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "Without image",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "bosh1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "d306b8e523",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "title",
+							"value": "Монеты или слитки",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "как тюменцам с помощью золота сохранить деньги",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Цена золота в слитках максимально приближена к стоимости содержащегося в них металла.\nВ ВТБ дали прогноз по золоту на 2023 год\n\n«В конце 2023 года ожидаем цену золота на уровне 1900 долл./унц. Золото может получить поддержку как защитный актив от ожидаемой в 2023 г. рецессии в крупнейших мировых экономиках», — рассказали в пресс-службе банка\n\nПодробнее на РБК:\nhttps://t.rbc.ru/tyumen/24/02/2023/63f853c19a7947ec4fd882bd?from=from_main_5",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0/1",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-25",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/posts"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": {}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Token",
+			"value": "3a28dab422159388e08209d82148193f",
+			"type": "string"
+		},
+		{
+			"key": "tokenNew",
+			"value": ""
+		},
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "tokenuser",
+			"value": ""
+		}
+	]
+}
