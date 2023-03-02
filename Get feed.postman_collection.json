@@ -1,0 +1,1019 @@
+{
+	"info": {
+		"_postman_id": "e4b839af-e009-44ff-84a9-0743c592bb2c",
+		"name": "Get feed",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25763437"
+	},
+	"item": [
+		{
+			"name": "Auth Admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.collectionVariables.set(\"tokenNew\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "GB202302841a614",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "431acc2bd4",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.collectionVariables.set(\"tokenuser16\",jsonData.token);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "bosh16",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "11812c6674",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "4957",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Запрос страницы пользователя по id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"value": "4957",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/api/users/profile/4957"
+			},
+			"response": []
+		},
+		{
+			"name": "New User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"username\", jsonData.item.username);\r",
+							"pm.collectionVariables.set(\"password\", jsonData.item.password);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenNew}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Сергей",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Бочкарёв",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "bosh18",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "89423457777",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "maie",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1976-02-20",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https:\\\\test-stand.gb.ru/gateway/dummies"
+			},
+			"response": []
+		},
+		{
+			"name": "Auth New User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonUser = pm.response.json\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.collectionVariables.set(\"tokenuser\",jsonUser.token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-mock-response-id",
+						"value": "4957",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "4957",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Ответ на запрос на страницу пользователя используя чужой токен",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser16}}",
+						"type": "text"
+					}
+				],
+				"url": "https://test-stand.gb.ru/api/users/profile/4958"
+			},
+			"response": []
+		},
+		{
+			"name": "Запрос на изменение данных пользователя валидными значениями",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Миша",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Медведев",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "mihail",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "89999944944",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "men",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1993-12-20",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/users/profile/{{userid}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Не уникальный логин",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Миша",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Медведев",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "miha",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "89999944944",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "men",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1993-12-20",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/users/profile/{{userid}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Longphone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Миша",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Медведев",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "mihail",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "8999994499000",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "men",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1993-12-20",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/users/profile/{{userid}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Номер тел. с буквами",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Миша",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Медведев",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "mihail",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "894234аааа",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "men",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1993-12-20",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/users/profile/{{userid}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Tooyang",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Миша",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Медведев",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "mihail",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "89999944944",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "men",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "2020-12-20",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/users/profile/{{userid}}"
+			},
+			"response": []
+		},
+		{
+			"name": "TooOld",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Миша",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Медведев",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "mihail",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "89999944944",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "men",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1915-12-20",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/users/profile/{{userid}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Short firstName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Ми",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Медведев",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "mihail",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "89999944944",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "men",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1993-12-20",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/users/profile/{{userid}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Short lastName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Миds",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "М",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "mihail",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "89999944944",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "men",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1993-12-20",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/users/profile/{{userid}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Long firstName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Ми",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Медведев",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "mihail",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "89999944944",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "men",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1993-12-20",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/users/profile/{{userid}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Long LastName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{tokenuser}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/oleg_/OneDrive/Изображения/gold2.jpg"
+						},
+						{
+							"key": "firstName",
+							"value": "Мишф",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Медведеввуааааааааааааауауауууу",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "mihail",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "89999944944",
+							"type": "text"
+						},
+						{
+							"key": "sex",
+							"value": "men",
+							"type": "text"
+						},
+						{
+							"key": "birthDate",
+							"value": "1993-12-20",
+							"type": "text"
+						}
+					]
+				},
+				"url": "https://test-stand.gb.ru/gateway/users/profile/{{userid}}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "tokenuser",
+			"value": ""
+		},
+		{
+			"key": "userid",
+			"value": ""
+		},
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "tokenuser1",
+			"value": ""
+		},
+		{
+			"key": "tokenNew",
+			"value": ""
+		},
+		{
+			"key": "tokenuser16",
+			"value": ""
+		}
+	]
+}
